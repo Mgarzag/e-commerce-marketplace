@@ -1,0 +1,30 @@
+import { getProducts } from "@/services/productService";
+
+// Define the Products page as an async Server Component.
+// It needs to be async because we're retrieving product data from the database.
+export default async function ProductsPage() {
+
+    // Call getProducts() and wait for the database query to finish.
+  // The returned products are stored in the products variable.
+  const products = await getProducts();
+
+  return (
+    <main>
+      <h1>Products</h1>
+
+        {/*
+        Loop through all of the products returned from the database.
+
+        For each product, create a <div> containing its
+        name, description, and price.
+      */}
+      {products.map((product) => (
+        <div key={product.id}>
+          <h2>{product.name}</h2>
+          <p>{product.description}</p>
+          <p>${product.price}</p>
+        </div>
+      ))}
+    </main>
+  );
+}
