@@ -1,4 +1,5 @@
 import { getProducts } from "@/services/productService";
+import ProductGrid from "@/components/products/ProductGrid";
 
 // Define the Products page as an async Server Component.
 // It needs to be async because we're retrieving product data from the database.
@@ -12,19 +13,8 @@ export default async function ProductsPage() {
     <main>
       <h1>Products</h1>
 
-        {/*
-        Loop through all of the products returned from the database.
-
-        For each product, create a <div> containing its
-        name, description, and price.
-      */}
-      {products.map((product) => (
-        <div key={product.id}>
-          <h2>{product.name}</h2>
-          <p>{product.description}</p>
-          <p>${product.price}</p>
-        </div>
-      ))}
+        <ProductGrid products={products} />
+    
     </main>
   );
 }
