@@ -1,5 +1,6 @@
 import { getProducts } from "@/services/productService";
 import ProductGrid from "@/components/products/ProductGrid";
+import styles from "@/components/products/products.module.css";
 
 // Define the Products page as an async Server Component.
 // It needs to be async because we're retrieving product data from the database.
@@ -10,10 +11,12 @@ export default async function ProductsPage() {
   const products = await getProducts();
 
   return (
-    <main>
-      <h1>Products</h1>
+    <main className={styles.container}>
+      <h1 className={styles.title}>
+        Products
+      </h1>
 
-        <ProductGrid products={products} />
+      <ProductGrid products={products} />
     
     </main>
   );
