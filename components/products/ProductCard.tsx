@@ -1,14 +1,12 @@
-// Import Next.js's Image component.
-// This provides automatic image optimization.
+// Import Next.js's Image component. This provides automatic image optimization.
 import Image from "next/image";
-// Import Next.js's Link component.
-// This allows navigation between pages without a full page reload.
+// Import Next.js's Link component. This allows navigation between pages without a full page reload.
 import Link from "next/link";
-// Import the Product type.
-// "type" tells TypeScript that this import is only being used for type checking.
+// Import the Product type."type" tells TypeScript that this import is only being used for type checking.
 import type { Product } from "@/types/product";
 // Import the CSS Module containing styles specifically for ProductCard.
 import styles from "./ProductCard.module.css";
+import AddToCartButton from "@/components/cart/AddToCartButton";
 
 // Define the props that ProductCard expects to receive.
 interface ProductCardProps {
@@ -58,6 +56,8 @@ export default function ProductCard({
         >
           View Product
         </Link>
+
+        <AddToCartButton product={product} />
       </div>
     </article>
   );
