@@ -10,8 +10,7 @@ import {
 
 import type { CartItem } from "@/types/cart";
 
-// Defines the data and functions available
-// throughout the shopping cart.
+// Defines the data and functions available throughout the shopping cart.
 interface CartContextType {
   cart: CartItem[];
   addToCart: (product: Omit<CartItem, "quantity">) => void;
