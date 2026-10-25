@@ -12,6 +12,7 @@
     "contract:emit": "prisma contract emit"
   },
   "dependencies": {
+    "@neondatabase/serverless": "^1.2.0",
     "@prisma/client": "^7.10.0",
     "@prisma/orm-postgres": "^8.0.0-rc.9",
     "dotenv": "^17.4.2",
