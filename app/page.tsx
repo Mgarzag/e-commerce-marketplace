@@ -1,16 +1,25 @@
+
 import Link from "next/link";
 import { getProducts } from "@/services/productService";
+import { getDummyProducts } from "@/services/dummyJsonService";
 import ProductGrid from "@/components/products/ProductGrid";
+import DummyProductGrid from "@/components/products/DummyProductGrid";
 import styles from "./page.module.css";
 
 export default async function HomePage() {
-  const products = await getProducts();
+  // Fetch products from both sources at the same time.
+  const [products, dummyProducts] = await Promise.all([
+    getProducts(),
+    getDummyProducts(),
+  ]);
 
-  // Only show a few products on the homepage.
+  // Only show a few products from each catalog on the homepage.
   const featuredProducts = products.slice(0, 4);
+  const featuredDummyProducts = dummyProducts.slice(0, 4);
 
   return (
     <main>
+      {/* Homepage hero section */}
       <section className={styles.hero}>
         <div className={styles.heroContent}>
           <h1 className={styles.title}>
@@ -21,15 +30,13 @@ export default async function HomePage() {
             Browse products from our growing marketplace.
           </p>
 
-          <Link
-            href="/products"
-            className={styles.shopButton}
-          >
+          <Link href="/products" className={styles.shopButton}>
             Shop Products
           </Link>
         </div>
       </section>
 
+      {/* Products stored in your Neon database */}
       <section className={styles.featured}>
         <div className={styles.container}>
           <div className={styles.sectionHeader}>
@@ -44,6 +51,22 @@ export default async function HomePage() {
         </div>
       </section>
 
+      {/* Products retrieved from DummyJSON */}
+      <section className={styles.featured}>
+        <div className={styles.container}>
+          <div className={styles.sectionHeader}>
+            <h2>Explore More Products</h2>
+
+            <Link href="/api-products">
+              View All API Products
+            </Link>
+          </div>
+
+          <DummyProductGrid products={featuredDummyProducts} />
+        </div>
+      </section>
+
+      {/* Marketplace benefits */}
       <section className={styles.benefits}>
         <div className={styles.container}>
           <h2>Why Shop With Us?</h2>
