@@ -1,21 +1,15 @@
 
 import Link from "next/link";
-import { getProducts } from "@/services/productService";
 import { getDummyProducts } from "@/services/dummyJsonService";
-import ProductGrid from "@/components/products/ProductGrid";
 import DummyProductGrid from "@/components/products/DummyProductGrid";
 import styles from "./page.module.css";
 
 export default async function HomePage() {
-  // Fetch products from both sources at the same time.
-  const [products, dummyProducts] = await Promise.all([
-    getProducts(),
-    getDummyProducts(),
-  ]);
+  // Retrieve products exclusively from DummyJSON.
+  const dummyProducts = await getDummyProducts();
 
-  // Only show a few products from each catalog on the homepage.
-  const featuredProducts = products.slice(0, 4);
-  const featuredDummyProducts = dummyProducts.slice(0, 4);
+  // Display only four featured products.
+  const featuredProducts = dummyProducts.slice(0, 4);
 
   return (
     <main>
@@ -36,7 +30,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* Products stored in your Neon database */}
+      {/* Featured DummyJSON products */}
       <section className={styles.featured}>
         <div className={styles.container}>
           <div className={styles.sectionHeader}>
@@ -47,22 +41,7 @@ export default async function HomePage() {
             </Link>
           </div>
 
-          <ProductGrid products={featuredProducts} />
-        </div>
-      </section>
-
-      {/* Products retrieved from DummyJSON */}
-      <section className={styles.featured}>
-        <div className={styles.container}>
-          <div className={styles.sectionHeader}>
-            <h2>Explore More Products</h2>
-
-            <Link href="/api-products">
-              View All API Products
-            </Link>
-          </div>
-
-          <DummyProductGrid products={featuredDummyProducts} />
+          <DummyProductGrid products={featuredProducts} />
         </div>
       </section>
 
@@ -89,7 +68,7 @@ export default async function HomePage() {
             <div>
               <h3>Marketplace Sellers</h3>
               <p>
-                Support products from multiple sellers.
+                Explore products across different categories.
               </p>
             </div>
           </div>

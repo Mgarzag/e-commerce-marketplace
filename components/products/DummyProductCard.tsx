@@ -20,7 +20,7 @@ export default function DummyProductCard({
 
       {/* Make the product image and title clickable. */}
       {/* Clicking either takes the user to that product's detail page. */}
-      <Link href={`/api-products/${product.id}`}>
+      <Link href={`/products/${product.id}`}>
 
       {/* Image container.
             "relative" allows the Image component to use the "fill" property.
