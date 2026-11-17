@@ -34,3 +34,9 @@
 .link:hover {
   text-decoration: underline;
 }
+
+.accountLinks {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
