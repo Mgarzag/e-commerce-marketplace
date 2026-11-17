@@ -21,7 +21,7 @@ export const auth = betterAuth({
   // Allow authentication requests from your local and deployed websites.
   trustedOrigins: [
     "http://localhost:3000",
-    "https://e-commerce-marketplace-green.vercel.app/",
+    "https://e-commerce-marketplace-green.vercel.app",
   ],
 
   // Enable email and password authentication.
