@@ -1,14 +1,7 @@
 
 // Creates your authentication system.
 import { betterAuth } from "better-auth";
-
-// Manages PostgreSQL database connections.
-import { Pool } from "pg";
-
-// Create a PostgreSQL connection pool for Better Auth.
-const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-});
+import { pool } from "@/src/lib/postgres";
 
 // Configure Better Auth.
 export const auth = betterAuth({

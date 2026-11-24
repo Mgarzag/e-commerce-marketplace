@@ -5,6 +5,8 @@ import Link from "next/link";
 // Import the DummyProduct interface as a type from our API service.
 import type { DummyProduct } from "@/services/dummyJsonService";
 
+import DummyAddToCartButton from "./DummyAddToCartButton";
+
 // Define the props that this component expects. The component must receive a product object matching the DummyProduct interface.
 interface DummyProductCardProps {
   product: DummyProduct;
@@ -61,6 +63,9 @@ export default function DummyProductCard({
           ★ {product.rating}
         </span>
       </div>
+
+      <DummyAddToCartButton product={product} />
+      
     </div>
   );
 }

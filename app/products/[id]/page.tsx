@@ -10,6 +10,8 @@ import { notFound } from "next/navigation";
 // Import the function that retrieves an individual product from DummyJSON.
 import { getDummyProductById } from "@/services/dummyJsonService";
 
+import DummyAddToCartButton from "@/components/products/DummyAddToCartButton";
+
 // Define the props expected by this dynamic page.
 // Next.js provides the product ID through the URL parameters.
 interface DummyProductPageProps {
@@ -103,6 +105,8 @@ export default async function DummyProductPage({
           <p className="text-sm text-gray-600 mb-6">
             Stock available: {product.stock}
           </p>
+
+          <DummyAddToCartButton product={product} />
 
         </div>
       </div>
